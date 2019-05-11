@@ -14,12 +14,10 @@ class HomeController extends AbstractController
      */
     public function index(EntrepriseRepository $repo)
     {
-        $repo = $this->getDoctrine()->getRepository(Entreprise::class);
-
-        $entreprise= $repo->findAll();
+        $entreprises= $repo->findAll();
 
         return $this->render('home/index.html.twig', [
-            'entreprises' => $entreprise,
+            'entreprises' => $entreprises,
         ]);
     }
 }
