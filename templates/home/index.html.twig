@@ -9,7 +9,7 @@
             <div class="jumbotron m-3 p-3">
                 <h1 class="display-3 text-center">Hello, world!</h1>
                 <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-                <hr class="my-4">
+                <hr class="my-4"php>
                 <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
                 <p class="lead">
                     <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
@@ -17,45 +17,21 @@
             </div>
         </div>
         <div class="row">
-            <div class="col">
-                <div class="card mb-3">
-                    <h3 class="card-header">Card header</h3>
-                    <h5 class="card-title mt-2">Special title treatment</h5>
+        {% for entreprise in entreprises %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <h3 class="card-header">{{ entreprise.nom}}</h3>
+                    <h5 class="card-title mt-3 mx-2">{{ entreprise.leader }}</h5>
                     <img alt="Card image" src="https://via.placeholder.com/200" style="height: 200px; width: 100%; display: block;">
                     <div class="card-body">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <p class="card-text">{{ entreprise.description | raw}}</p>
                     </div>
                     <div class="card-body">
                         <a class="card-link" href="#">Card link</a>
                     </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="card mb-3">
-                    <h3 class="card-header">Card header</h3>
-                    <h5 class="card-title mt-2">Special title treatment</h5>
-                    <img alt="Card image" src="https://via.placeholder.com/200" style="height: 200px; width: 100%; display: block;">
-                    <div class="card-body">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                    <div class="card-body">
-                        <a class="card-link" href="#">Card link</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card mb-3">
-                    <h3 class="card-header">Card header</h3>
-                    <h5 class="card-title mt-2">Special title treatment</h5>
-                    <img alt="Card image" src="https://via.placeholder.com/200" style="height: 200px; width: 100%; display: block;">
-                    <div class="card-body">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                    <div class="card-body">
-                        <a class="card-link" href="#">Card link</a>
-                    </div>
-                </div>
-            </div>
+        {% endfor %}
         </div>
     </div>
 {% endblock %}
