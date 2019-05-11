@@ -22,11 +22,6 @@ class Entreprise
     private $nom;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $leader;
-
-    /**
      * @ORM\Column(type="text")
      */
     private $description;
@@ -53,17 +48,6 @@ class Entreprise
         return $this;
     }
 
-    public function getLeader(): ?string
-    {
-        return $this->leader;
-    }
-
-    public function setLeader(string $leader): self
-    {
-        $this->leader = $leader;
-
-        return $this;
-    }
 
     public function getDescription(): ?string
     {

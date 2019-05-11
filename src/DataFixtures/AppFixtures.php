@@ -25,7 +25,6 @@ class AppFixtures extends Fixture
 
             $entreprise->setNom($title.$i)
                 ->setSlug($slug)
-                ->setLeader('Sylvain')
                 ->setDescription($description);
 
                 $manager->persist($entreprise);
