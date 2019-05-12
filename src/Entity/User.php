@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Webmozart\Assert\Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -40,6 +41,11 @@ class User
      * @ORM\Column(type="string", length=255)
      */
     private $hash;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Entreprise", mappedBy="leader", cascade={"persist", "remove"})
+     */
+    private $entreprise;
 
     public function getId(): ?int
     {
@@ -102,6 +108,23 @@ class User
     public function setHash(string $hash): self
     {
         $this->hash = $hash;
+
+        return $this;
+    }
+
+    public function getEntreprise(): ?Entreprise
+    {
+        return $this->entreprise;
+    }
+
+    public function setEntreprise(Entreprise $entreprise): self
+    {
+        $this->entreprise = $entreprise;
+
+        // set the owning side of the relation if necessary
+        if ($this !== $entreprise->getLeader()) {
+            $entreprise->setLeader($this);
+        }
 
         return $this;
     }

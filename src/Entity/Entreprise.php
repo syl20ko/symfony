@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EntrepriseRepository")
  */
@@ -30,6 +31,12 @@ class Entreprise
      * @ORM\Column(type="string", length=255)
      */
     private $slug;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="entreprise", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $leader;
 
     public function getId(): ?int
     {
@@ -69,6 +76,18 @@ class Entreprise
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getLeader(): ?User
+    {
+        return $this->leader;
+    }
+
+    public function setLeader(User $leader): self
+    {
+        $this->leader = $leader;
 
         return $this;
     }

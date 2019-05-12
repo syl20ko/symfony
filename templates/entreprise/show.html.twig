@@ -1,8 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Fiche de l'entreprise {{ entreprise.nom }}{% endblock %}
+{% block title %}Fiche de l'entreprise
+    {{ entreprise.nom }}
+{% endblock %}
 
 {% block body %}
-<h1 class="h2">{{ entreprise.nom}}</h1>
-<p>{{ entreprise.description | raw }}</p>
+
+
+    <div class="container">
+        <div class="row mx-3 mt-5">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body bg-light">
+                        <h1 class="h2">{{ entreprise.nom}}</h1>
+                        <p>{{ entreprise.description | raw }}</p>
+                    </div>
+                    <div class="card-footer">Footer de la card</div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body bg-light">Directeur :
+                        {{ entreprise.leader.firstName}}
+                        {{ entreprise.leader.lastName}}</div>
+                    <div class="card-footer">Footer de la card</div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
