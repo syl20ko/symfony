@@ -17,7 +17,7 @@ class AppFixtures extends Fixture
         $faker = faker::create('FR-fr');
         $slugify = new Slugify();
 
-        for ($l = 1; $l < 29; $l++) {
+        for ($l = 0; $l < 30; $l++) {
 
             $user = new User();
 
@@ -28,18 +28,15 @@ class AppFixtures extends Fixture
                 ->setHash('password');
 
             $manager->persist($user);
-           
-        }
-
-        for ($i = 1; $i < 29; $i++) {
+            
             $entreprise = new Entreprise();
 
-            $title = $faker->sentence();
+            $title = $faker->sentence(2);
             $slug  = $slugify->slugify($title);
             $description = $faker->paragraph(3);
 
 
-            $entreprise->setNom($title . $i)
+            $entreprise->setNom($title )
                 ->setSlug($slug)
                 ->setLeader($user)
                 ->setDescription($description);

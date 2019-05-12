@@ -9,7 +9,7 @@
             <div class="jumbotron m-3 p-3">
                 <h1 class="display-3 text-center">Hello, world!</h1>
                 <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-                <hr class="my-4"php>
+                <hr class="my-4" php>
                 <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
                 <p class="lead">
                     <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
@@ -17,21 +17,23 @@
             </div>
         </div>
         <div class="row">
-        {% for entreprise in entreprises %}
-            <div class="col-md-4">
-                <div class="card mb-4">
-                    <h3 class="card-header">{{ entreprise.nom}}</h3>
-                    <h5 class="card-title mt-3 mx-2">Directeur : {{ entreprise.leader.firstName}} {{ entreprise.leader.LastName}}</h5>
-                    <img alt="Card image" src="https://via.placeholder.com/200" style="height: 200px; width: 100%; display: block;">
-                    <div class="card-body">
-                        <p class="card-text">{{ entreprise.description | raw | slice(0, 110) ~ '...'}}</p>
-                    </div>
-                    <div class="card-body">
-                        <a class="card-link" href="{{ path('entreprise_show' , { slug : entreprise.slug }) }}">Voir la fiche</a>
+            {% for entreprise in entreprises %}
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <h3 class="card-header">{{ entreprise.nom }}</h3>
+                        <h5 class="card-title mt-3 mx-2">Directeur :
+                            {{ entreprise.leader.firstName}}
+                            {{ entreprise.leader.LastName}}</h5>
+                        <img alt="Card image" src="https://via.placeholder.com/200" style="height: 200px; width: 100%; display: block;">
+                        <div class="card-body">
+                            <p class="card-text">{{ entreprise.description | raw | slice(0, 110) ~ '...'}}</p>
+                        </div>
+                        <div class="card-body">
+                            <a class="card-link float-right" href="{{ path('entreprise_show' , { slug : entreprise.slug }) }}">Voir la fiche</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
