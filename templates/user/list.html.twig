@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello UserController!
+{% block title %}Liste des entrepreneurs
 {% endblock %}
 
 {% block body %}
@@ -11,6 +11,7 @@
                     <th scope="col">Nom</th>
                     <th scope="col">Prénom</th>
                     <th scope="col">Entreprise</th>
+                    <th scope="col">Fiche entreprise</th>
                 </tr>
             </thead>
             <tbody>
@@ -19,6 +20,7 @@
                         <th scope="row">{{ user.firstName }}</th>
                         <td>{{ user.lastName }}</td>
                         <td>{{ user.entreprise.nom }}</td>
+                        <td><a href="{{ path("entreprise_show", {slug : user.entreprise.slug })}}">Fiche</a></td>
                     </tr>
                 {% endfor %}
             </tbody>
