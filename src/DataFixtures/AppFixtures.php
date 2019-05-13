@@ -3,7 +3,9 @@
 namespace App\DataFixtures;
 
 use App\Entity\User;
+use App\Entity\Offre;
 use App\Entity\Article;
+use App\Entity\Demande;
 use App\Entity\Category;
 use App\Entity\Entreprise;
 use Cocur\Slugify\Slugify;
@@ -22,6 +24,7 @@ class AppFixtures extends Fixture
         $users = [];
         
          //USERS
+         $entreprises= [];
         for ($l = 0; $l < 30; $l++) {
 
             $user = new User();
@@ -37,7 +40,7 @@ class AppFixtures extends Fixture
             $users[] = $user;
             //ENTREPRISE
             $entreprise = new Entreprise();
-
+            
             $title = $faker->sentence(2);
             $slug  = $slugify->slugify($title);
             $description = $faker->paragraph(3);
@@ -49,6 +52,33 @@ class AppFixtures extends Fixture
                 ->setDescription($description);
 
             $manager->persist($entreprise);
+            $entreprises[]= $entreprise;
+        }
+
+        //OFFRES
+
+        for ($o=0; $o < 80 ; $o++) { 
+            $offre = new Offre();
+            $entreprise = $entreprises[mt_rand(0, count($entreprises) - 1)];
+            $offre->setTitle($faker->sentence(1))
+                  ->setCreatedAt(new \Datetime)
+                  ->setContent($faker->paragraph(7))
+                  ->setEntreprise($entreprise);
+
+            $manager->persist($offre);
+        }
+        //DEMANDES
+        
+        for ($d=0; $d < 50 ; $d++) { 
+            $demande = new Demande();
+            $entreprise = $entreprises[mt_rand(0, count($entreprises) - 1)];
+            $demande->setTitle($faker->sentence(1))
+                    ->setContent($faker->paragraph(15))
+                    ->setCreatedAt(new \Datetime)
+                    ->setEntreprise($entreprise);
+
+            $manager->persist($demande);
+
         }
         //CATEGORY
         $categories = [];

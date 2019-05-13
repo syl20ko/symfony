@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 
@@ -37,6 +39,22 @@ class Entreprise
      * @ORM\JoinColumn(nullable=false)
      */
     private $leader;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Demande", mappedBy="entreprise")
+     */
+    private $demandes;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Offre", mappedBy="entreprise")
+     */
+    private $offres;
+
+    public function __construct()
+    {
+        $this->demandes = new ArrayCollection();
+        $this->offres = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -88,6 +106,68 @@ class Entreprise
     public function setLeader(User $leader): self
     {
         $this->leader = $leader;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Demande[]
+     */
+    public function getDemandes(): Collection
+    {
+        return $this->demandes;
+    }
+
+    public function addDemande(Demande $demande): self
+    {
+        if (!$this->demandes->contains($demande)) {
+            $this->demandes[] = $demande;
+            $demande->setEntreprise($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDemande(Demande $demande): self
+    {
+        if ($this->demandes->contains($demande)) {
+            $this->demandes->removeElement($demande);
+            // set the owning side to null (unless already changed)
+            if ($demande->getEntreprise() === $this) {
+                $demande->setEntreprise(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Offre[]
+     */
+    public function getOffres(): Collection
+    {
+        return $this->offres;
+    }
+
+    public function addOffre(Offre $offre): self
+    {
+        if (!$this->offres->contains($offre)) {
+            $this->offres[] = $offre;
+            $offre->setEntreprise($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOffre(Offre $offre): self
+    {
+        if ($this->offres->contains($offre)) {
+            $this->offres->removeElement($offre);
+            // set the owning side to null (unless already changed)
+            if ($offre->getEntreprise() === $this) {
+                $offre->setEntreprise(null);
+            }
+        }
 
         return $this;
     }

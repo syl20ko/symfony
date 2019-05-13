@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Offres Commerciales
+{% endblock %}
+
+{% block body %}
+    <div class="image-container mb-3">
+        <div class="text">{{ offres|length }} Offres disponibles</div>
+    </div>
+    <div class="container">
+        <div class="row mt-5">
+            {% for offres in offres %}
+                <div class="col-md-3">
+                    <div class="card border-primary mb-3" style="max-width: 20rem;">
+                        <div class="card-header">{{offres.entreprise.nom}}</div>
+                        <div class="card-body">
+                            <h4 class="card-title">{{ offres.title}}</h4>
+                            <p class="card-text">{{ offres.content | raw | slice(0, 80) ~ '...'}}</p>
+                            <p>{{offres.createdAt | date('d/m/Y h:i')}}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

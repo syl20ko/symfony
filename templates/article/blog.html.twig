@@ -4,16 +4,19 @@
 {% endblock %}
 
 {% block body %}
+
+    <div class="image-container mb-3">
+        <div class="text">{{ articles|length }}
+            articles disponibles</div>
+
+    </div>
     <!-- Page Content -->
     <div
         class="container">
 
         <!-- Page Heading -->
-        <h2 class="my-4">{{ articles|length }}
-            articles sont disponibles
-        </h1>
-        <hr>
-        <div class="">
+        <div class="container-fluid">
+            <h3 class="h5">Catégories</h3>
             {% for categories in categories %}
                 <button class="btn btn-primary btn-lg " type="button">{{ categories.title }}</button>
             {% endfor %}

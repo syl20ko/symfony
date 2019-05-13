@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Demandes de prestations
+{% endblock %}
+
+{% block body %}
+    <div class="image-container mb-3">
+        <div class="text">{{ demandes|length }}
+            demandes disponibles</div>
+    </div>
+    <div class="container">
+        <div class="row mt-5">
+            {% for demandes in demandes %}
+                <div class="col-md-3">
+                    <div class="card border-primary mb-3" style="max-width: 20rem;">
+                        <div class="card-header">{{demandes.entreprise.nom}}</div>
+                        <div class="card-body">
+                            <h4 class="card-title">{{ demandes.title}}</h4>
+                            <p class="card-text">{{ demandes.content | raw | slice(0, 80) ~ '...'}}</p>
+                            <p>{{demandes.createdAt | date('d/m/Y h:i')}}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
