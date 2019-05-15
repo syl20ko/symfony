@@ -106,6 +106,7 @@ class AppFixtures extends Fixture
             $category = $categories[mt_rand(0, count($categories) - 1)];
             $article->setTitle($title)
                 ->setContent($content)
+                ->setUpdatedAt(new \Datetime())
                 ->setCategory($category)
                 ->setSlug($slug)
                 ->setCreatedAt(new \DateTime())
