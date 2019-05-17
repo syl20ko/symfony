@@ -30,3 +30,7 @@ services:
     App\Listener\ImageCacheSubscriber:
         tags:
         - { name: doctrine.event_subscriber }
+
+    App\Listener\LoginListener:
+        tags:
+        - { name: 'kernel.event_listener', event: 'security.authentication.success'}

@@ -84,6 +84,16 @@ class User implements UserInterface
     private $slug;
 
     /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $lastLogin;
+
+    /**
      * Permet d'initialiser le slug !
      * @ORM\PrePersist
      * @ORM\PreUpdate
@@ -100,6 +110,8 @@ class User implements UserInterface
     public function __construct()
     {
         $this->articles = new ArrayCollection();
+        $this->createdAt = new \Datetime();
+        $this->lastLogin = new \Datetime();
     }
 
     public function getId(): ?int
@@ -268,5 +280,29 @@ class User implements UserInterface
     public function eraseCredentials()
     {
         
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getLastLogin(): ?\DateTimeInterface
+    {
+        return $this->lastLogin;
+    }
+
+    public function setLastLogin(\DateTimeInterface $lastLogin): self
+    {
+        $this->lastLogin = $lastLogin;
+
+        return $this;
     }
 }
