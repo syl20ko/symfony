@@ -14,9 +14,17 @@ use Faker\Provider\zh_CN\DateTime;
 use Doctrine\Migrations\Version\Factory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
 {
+    private $encoder;
+
+    public function __construct(UserPasswordEncoderInterface $encoder)
+    {
+        $this->encoder = $encoder;
+    }
+    
     public function load(ObjectManager $manager)
     {
         $faker = faker::create('FR-fr');
@@ -29,11 +37,14 @@ class AppFixtures extends Fixture
 
             $user = new User();
 
+            $hash = $this->encoder->encodePassword($user, 'password');
+
             $user->setFirstName($faker->firstName)
                 ->setLastName($faker->lastName)
+                ->setEmail($faker->email)
                 ->setIntroduction($faker->sentence())
                 ->setDescription($faker->paragraph(3))
-                ->setHash('password');
+                ->setHash($hash);
 
             $manager->persist($user);
 

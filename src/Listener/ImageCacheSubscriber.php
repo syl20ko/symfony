@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping\PreFlush;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\PreFlushEventArgs;
 use Doctrine\ORM\Event\LifecycleEventArgs;
+use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
@@ -40,7 +41,7 @@ class ImageCacheSubscriber implements EventSubscriber {
         $this->cacheManager->remove($this->uploaderHelper->asset($entity, 'imageFile'));
     }
 
-    public function preUpdate(PreFlushEventArgs $args){
+    public function preUpdate(PreUpdateEventArgs $args){
         $entity =$args->getEntity();
 
         if(!$entity instanceof Article){
