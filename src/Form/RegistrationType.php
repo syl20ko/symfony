@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\User;
+use App\Form\EntrepriseType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -38,9 +39,9 @@ class RegistrationType extends AbstractType
             ->add('email', EmailType::class,$this->getConfiguration("Email", "Votre mot de passe..."))
             ->add('hash',PasswordType::class,$this->getConfiguration("Mot de passe", "Entrez votre mot de passe"))
             ->add('passwordConfirm', PasswordType::class, $this->getConfiguration("Confirmation de mot de passe", "Veuillez confirmer votre mot de passe"))
-            ->add('introduction', TextType::class,$this->getConfiguration("introduction", "Décrivez vous en quelques mots") )
-            ->add('description',TextType::class,$this->getConfiguration("description", "C'est le moment de parler de votre projet !"))
-            ->add('entreprise')
+            ->add('introduction', TextType::class,$this->getConfiguration("Introduction", "Décrivez vous en quelques mots") )
+            ->add('description',TextType::class,$this->getConfiguration("Description", "C'est le moment de parler de votre projet !"))
+            ->add('entreprise', EntrepriseType::class)
         ;
     }
 

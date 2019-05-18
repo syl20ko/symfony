@@ -4,12 +4,32 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container">
+{{ form_start(form) }}
+    <div class="container mt-3">
         <h1>Inscrivez vous sur Liider !</h1>
-
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <button type="submit" class="btn btn-success">Confirmer l'inscription</button>
-        {{ form_end(form) }}
+        <div class="row mt-3">
+            <div class="col-md-6">
+            <h1 class="h3">Profil du dirigeant</h1>
+            {{ form_row(form.firstName) }}
+            {{ form_row(form.lastName) }}
+            {{ form_row(form.email) }}
+            {{ form_row(form.hash) }}
+            {{ form_row(form.passwordConfirm) }}
+            {{ form_row(form.introduction) }}
+            {{ form_row(form.description) }}
+            </div>
+            <div class="col-md-6">
+            <h1 class="h3">Profil de l'entreprise</h1>
+            {{ form_row(form.entreprise.nom) }}
+            {{ form_row(form.entreprise.description) }}
+            {{ form_row(form.entreprise.address) }}
+            {{ form_row(form.entreprise.city) }}
+            {{ form_row(form.entreprise.postalCode) }}
+            {{ form_row(form.entreprise.lat) }}
+            {{ form_row(form.entreprise.lng) }}
+            </div>
+        </div>
+        <button class="btn btn-success" type="submit">Confirmer l'inscription</button>
     </div>
+    {{ form_end(form) }}
 {% endblock %}
