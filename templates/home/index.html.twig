@@ -10,14 +10,87 @@
                 <h1 class="display-2 text-center">Bienvenue sur Liider</h1>
                 <p class="lead text-center">Première plateforme dédiée aux jeunes créateurs d'entreprises !</p>
                 <hr class="my-4">
-                <p>Bénéficiez d'un <strong>outil de gestion commercial</strong> , d'une <strong>visibilité sur le web</strong> et d'un <strong>réseau d'entrepreneurs</strong> au même endroit !</p>
+                <p>Bénéficiez d'un
+                    <strong>outil de gestion commercial</strong>
+                    , d'une
+                    <strong>visibilité sur le web</strong>
+                    et d'un
+                    <strong>réseau d'entrepreneurs</strong>
+                    au même endroit !</p>
                 <p class="lead">
-                    <p><a class="btn btn-success btn-lg" href="#" role="button">Se connecter</a> <a class="btn btn-primary btn-lg" href="#" role="button">Découvrir Liider</a></p>
-                    <p class="h6 mt-1"><a href="#">Pas encore inscrit ?</a></p>
+                    <p>
+                        <a class="btn btn-success btn-lg" href="#" role="button">Se connecter</a>
+                        <a class="btn btn-primary btn-lg" href="#" role="button">Découvrir Liider</a>
+                    </p>
+                    <p class="h6 mt-1">
+                        <a href="#">Pas encore inscrit ?</a>
+                    </p>
                 </p>
             </div>
         </div>
-        <div class="row">
+        <h2 class="mt-2">Entreprises les plus populaires</h2>
+        <div class="row mt-4">
+            {% for entreprise in entreprises %}
+                <div class="col-md-4">
+                    <div class="card border-primary  mb-4">
+                        <h3 class="card-header">{{ entreprise.nom }}</h3>
+                        <h5 class="card-title mt-3 mx-2">Directeur :
+                            {{ entreprise.leader.firstName}}
+                            {{ entreprise.leader.LastName}}</h5>
+                        <img alt="Card image" src="https://via.placeholder.com/200" style="height: 200px; width: 100%; display: block;">
+                        <div class="card-body">
+                            <p class="card-text">{{ entreprise.description | raw | slice(0, 110) ~ '...'}}</p>
+                        </div>
+                        <div class="card-body">
+                            <a class="card-link float-right" href="{{ path('entreprise_show' , { slug : entreprise.slug }) }}">Voir la fiche</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <h2 class="">Entrepreneurs du mois</h2>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img alt="..." class="mt-3 ml-3" src="https://via.placeholder.com/160">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                <p class="card-text">
+                                    <small class="text-muted">Last updated 3 mins ago</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img alt="..." class="mt-3 ml-3" src="https://via.placeholder.com/160">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                <p class="card-text">
+                                    <small class="text-muted">Last updated 3 mins ago</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="">Entreprises inscrites récemment</h2>
+        <div class="row mt-4">
             {% for entreprise in entreprises %}
                 <div class="col-md-4">
                     <div class="card border-primary  mb-4">
